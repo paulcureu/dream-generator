@@ -8,15 +8,18 @@ form.addEventListener("submit", async (e) => {
 
   const data = new FormData(form);
 
-  const response = await fetch("dream-generator-production.up.railway.app", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      prompt: data.get("prompt"),
-    }),
-  });
+  const response = await fetch(
+    "dream-generator-production.up.railway.app/dream",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: data.get("prompt"),
+      }),
+    }
+  );
 
   const { image } = await response.json();
 
