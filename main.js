@@ -9,7 +9,7 @@ form.addEventListener("submit", async (e) => {
   const data = new FormData(form);
 
   const response = await fetch(
-    "dream-generator-production.up.railway.app/dream",
+    "https://dream-generator-production.up.railway.app/dream",
     {
       method: "POST",
       headers: {
