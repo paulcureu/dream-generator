@@ -6,9 +6,18 @@ import OpenAI from "openai";
 dotenv.config();
 
 const app = express();
+
+const allowedOrigins = ["http://localhost:5173", "https://dream.balkancode.ro"];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://dream.balkancode.ro/"],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed from this origin"));
+      }
+    },
   })
 );
 app.use(express.json());
