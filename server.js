@@ -6,7 +6,11 @@ import OpenAI from "openai";
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://dream.balkancode.ro/"],
+  })
+);
 app.use(express.json());
 
 const openai = new OpenAI({
@@ -32,4 +36,6 @@ app.post("/dream", async (req, res) => {
   }
 });
 
-app.listen(8080, () => console.log("make art on http://localhost:8080/dream"));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log(`Server on ${port}`));
